@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <style>    
+    .normal-square{
+      box-shadow: 0 0 5px #fff;
+      box-shadow: 0 0 10px #ff8c00;
+      text-shadow:0 0 10px #9932cc,0 0 50px #9932cc;
+      height:340px;
+      width:250px;
+      text-shadow:1px 0 0 #171717,
+      1.5px 0 0 #171717,
+      -1px 0 0 #171717,
+      0 1px 0 #171717,
+      0 1.5px 0 #171717,
+      0 -1px 0 #171717,
+      -1px -1px 0 #171717,
+      1px 1px 0 #171717,
+      0 0 10px #ff8c00,
+      0 0 15px #ff8c00;
+      color:#ff8c00;
+      font-size:30px;
+      font-weight:bold;
+      text-align:center;
+      border-radius: 3px;  
+      background-color:gold;
+    }
+	</style>
+  <style>
+    .rare-square{
+      box-shadow: 0 0 5px #fff;
+      box-shadow: 0 0 10px #ba55d3;
+      text-shadow:0 0 10px #9932cc,0 0 50px #9932cc;
+      height:340px;
+      width:250px;
+      text-shadow:1px 0 0 #171717,
+      1.5px 0 0 #171717,
+      -1px 0 0 #171717,
+      0 1px 0 #171717,
+      0 1.5px 0 #171717,
+      0 -1px 0 #171717,
+      -1px -1px 0 #171717,
+      1px 1px 0 #171717,
+      0 0 10px #ba55d3,
+      0 0 15px #ba55d3;
+      color:#ba55d3;
+      font-size:30px;
+      font-weight:bold;
+      text-align:center;
+      border-radius: 3px;  
+      background-color:#ee82ee;
+    }
+  </style>
+  <style>
+    .legend-square{
+      box-shadow: 0 0 5px #fff;
+      box-shadow: 0 0 10px #ff4500;
+      text-shadow:0 0 10px #dc143c,0 0 50px #dc143c;
+      height:340px;
+      width:250px;
+      text-shadow:1px 0 0 #171717,
+      1.5px 0 0 #171717,
+      -1px 0 0 #171717,
+      0 1px 0 #171717,
+      0 1.5px 0 #171717,
+      0 -1px 0 #171717,
+      -1px -1px 0 #171717,
+      1px 1px 0 #171717,
+      0 0 10px #ff4500,
+      0 0 50px #ff4500;
+      color:#ff4500;
+      font-size:30px;
+      font-weight:bold;
+      text-align:center;
+      border-radius: 3px;  
+      /*background:linear-gradient(to bottom right,#ffd700,orange);*/
+      background-color:#ff7f50;
+    }
+  </style>
+
+	<style>
+		.normal-label-square{
+			height:150px;
+			width:250px;
+			background-color:#ff8c00;
+		}
+	</style>
+  <style>
+    .rare-label-square{
+      height:150px;
+      width:250px;
+      background-color:#ba55d3;
+
+
+    }
+  </style>
+  <style>
+    .legend-label-square{
+      height:150px;
+      width:250px;
+      background-color:#ff4500;
+    }
+  </style>
+  <style>
+/** ボタン **/
+    .disp-box-normal label {
+      text-shadow:0 0 0  #fff;
+      font-family:"sans-serif";
+      display: inline-block;
+      color: black;                   /* ボタンの文字色 */
+      background-color: #ffd700;        /* ボタンの背景色 */
+      font-weight: bold;                /* 文字の太さ */
+      padding: 0.5em 2em;               /* ボタン内側の余白 */
+      border-bottom: solid 4px #ff1010; /* ボタンの影部分 */
+      border-radius: 3px;               /* 角丸 */
+      cursor: pointer;    
+      font-size:30px;
+             /* ボタンにカーソルを合わせた時に指アイコンを表示 */
+    }
+/** ボタンクリック時のボタンを押し込む動作 **/
+    .disp-box-normal label:active {
+      -webkit-transform: translateY(8px); /* Chrome、Safari用 */
+      -moz-transform: translateY(8px);    /* Firefox用 */
+      -ms-transform: translateY(8px);     /* IE用 */
+      transform: translateY(8px);
+      border-bottom: none;
+    }
+/** チェックボックス **/
+    .disp-box-normal input {
+      display: none; /* 非表示 */
+    }
+/** 表示・非表示を切り替えるテキスト（「クリックされました！」の部分） **/
+    .disp-box-normal .text {
+      color: #ff8c00;    /* 文字色 */
+      font-weight: bold; /* 文字の太さ */
+      overflow: hidden;
+      font size:40px;
+      position:relative;
+      top:-15px;
+      text-align:center;
+      opacity: 0;        /* 文字を非表示 */
+    }
+/** チェックボックスにチェックが入った時の、テキストの処理 **/
+    .disp-box-normal input:checked ~ .text {
+      height: auto;
+      opacity: 1; /* 文字を表示 */
+    }
+  </style>
+  <style>
+    .disp-box-rare label {
+      text-shadow:0 0 0  #fff;
+      font-family:"sans-serif";
+      display: inline-block;
+      color: black;                   /* ボタンの文字色 */
+      background-color: #ee82ee;        /* ボタンの背景色 */
+      font-weight: bold;                /* 文字の太さ */
+      padding: 0.5em 2em;               /* ボタン内側の余白 */
+      border-bottom: solid 4px #9932cc; /* ボタンの影部分 */
+      border-radius: 3px;               /* 角丸 */
+      cursor: pointer;    
+      font-size:30px;
+                 /* ボタンにカーソルを合わせた時に指アイコンを表示 */
+    }
+/** ボタンクリック時のボタンを押し込む動作 **/
+    .disp-box-rare label:active {
+      -webkit-transform: translateY(8px); /* Chrome、Safari用 */
+      -moz-transform: translateY(8px);    /* Firefox用 */
+      -ms-transform: translateY(8px);     /* IE用 */
+      transform: translateY(8px);
+      border-bottom: none;
+    }
+/** チェックボックス **/
+    .disp-box-rare input {
+      display: none; /* 非表示 */
+    }
+/** 表示・非表示を切り替えるテキスト（「クリックされました！」の部分） **/
+    .disp-box-rare .text {
+      color: #ba55d3;    /* 文字色 */
+      font-weight: bold; /* 文字の太さ */
+      overflow: hidden;
+      font size:40px;
+      position:relative;
+      top:-15px;
+      text-align:center;
+      opacity: 0;        /* 文字を非表示 */
+    }
+/** チェックボックスにチェックが入った時の、テキストの処理 **/
+    .disp-box-rare input:checked ~ .text {
+      height: auto;
+      opacity: 1; /* 文字を表示 */
+    }
+  </style>
+  <style>
+    .disp-box-legend label {
+      text-shadow:0 0 0  #fff;
+      font-family:"sans-serif";
+      display: inline-block;
+      color: black;                   /* ボタンの文字色 */
+      background-color: #ff7f50;        /* ボタンの背景色 */
+      font-weight: bold;                /* 文字の太さ */
+      padding: 0.5em 2em;               /* ボタン内側の余白 */
+      border-bottom: solid 4px #dc143c; /* ボタンの影部分 */
+      border-radius: 3px;               /* 角丸 */
+      cursor: pointer;    
+      font-size:30px;
+             /* ボタンにカーソルを合わせた時に指アイコンを表示 */
+    }
+/** ボタンクリック時のボタンを押し込む動作 **/
+    .disp-box-legend label:active {
+      -webkit-transform: translateY(8px); /* Chrome、Safari用 */
+      -moz-transform: translateY(8px);    /* Firefox用 */
+      -ms-transform: translateY(8px);     /* IE用 */
+      transform: translateY(8px);
+      border-bottom: none;
+    }
+/** チェックボックス **/
+    .disp-box-legend input {
+      display: none; /* 非表示 */
+    }
+/** 表示・非表示を切り替えるテキスト（「クリックされました！」の部分） **/
+    .disp-box-legend .text {
+      color: #ff4500;    /* 文字色 */
+      font-weight: bold; /* 文字の太さ */
+      overflow: hidden;
+      font size:40px;
+      position:relative;
+      top:-15px;
+      text-align:center;
+      opacity: 0;        /* 文字を非表示 */
+    }
+/** チェックボックスにチェックが入った時の、テキストの処理 **/
+    .disp-box-legend input:checked ~ .text {
+      height: auto;
+      opacity: 1; /* 文字を表示 */
+    }
+  </style>
+</head>
+<body>
+
+
+
+  <style>/*bodyの詳細設定</style>
+
+  <body bgcolor="#171717"text="#EEEEEE">
+
+
+
+  <style>/*タイトル部分</style>
+
+  <font face ="けいふぉんと">
+  <img src="title_font.jpg" 
+  style=
+  "height:180px;
+  width:700px;">
+  <p style= "font-size:75px;
+  color:yellow;
+  position:relative;
+  left:650px;
+  top:-205px; ">
+    unit7
+  <p style="writing-mode: vertical-rl;
+  font-size:18px;
+  position:relative;
+  top:-371px;
+  left:838px;
+  color:#9999ff;">
+    中二英語
+  </p>
+    <p style=
+  "font-size:20px;
+  position:relative;
+  top:-456px;
+  left:646px;
+  color:#fff;">
+  単全60問
+  </p>
+  </font>
+
+
+
+<style>/*内容</style>
+<style>/*ノーマルカード</style>
+
+  <div class="normal-square"style = 
+  "position:relative;top:-410px;left:30px;/*問題*/">
+<!--   問題部分   -->すべての、全部の
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-1">ANSER</label>
+  <input type="checkbox" id="nomber-1">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->all
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->イルカ
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-2">ANSER</label>
+  <input type="checkbox" id="nomber-2">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->dolphin
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->大きい、広い
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-3">ANSER</label>
+  <input type="checkbox" id="nomber-3">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->large
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:180px;left:-600px;/*問題*/">
+<!--   問題部分   -->海
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-4">ANSER</label>
+  <input type="checkbox" id="nomber-4">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->sea
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->-system comment-スキップしてください
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-5">ANSER</label>
+  <input type="checkbox" id="nomber-5">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->※製作ミスです
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->話、物語
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-6">ANSER</label>
+  <input type="checkbox" id="nomber-6">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->tale
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:180px;left:-600px;/*問題*/">
+<!--   問題部分   -->～よりも、～に比べて
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-7">ANSER</label>
+  <input type="checkbox" id="nomber-7">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->than
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->マグロ
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-8">ANSER</label>
+  <input type="checkbox" id="nomber-8">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->tuna
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->シロナガスクジラ
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-9">ANSER</label>
+  <input type="checkbox" id="nomber-9">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->blue whale
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:180px;left:-600px;/*問題*/">
+<!--   問題部分   -->水泳プール
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-10">ANSER</label>
+  <input type="checkbox" id="nomber-10">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->suwimming pool
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->終わり、結末
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-11">ANSER</label>
+  <input type="checkbox" id="nomber-11">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->ending
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->印象的な、深い感動を与える
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-12">ANSER</label>
+  <input type="checkbox" id="nomber-12">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->impressive
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:180px;left:-600px;/*問題*/">
+<!--   問題部分   -->(～より)もっと
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-13">ANSER</label>
+  <input type="checkbox" id="nomber-13">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->more
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->最も
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-14">ANSER</label>
+  <input type="checkbox" id="nomber-14">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->most
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->水族館
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-15">ANSER</label>
+  <input type="checkbox" id="nomber-15">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->aquarium
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:180px;left:-600px;/*問題*/">
+<!--   問題部分   -->good,wellの最上級
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-16">ANSER</label>
+  <input type="checkbox" id="nomber-16">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->best
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->1good,wellの比較級
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-17">ANSER</label>
+  <input type="checkbox" id="nomber-17">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->better
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->状態、様態
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-18">ANSER</label>
+  <input type="checkbox" id="nomber-18">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->condition
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:180px;left:-600px;/*問題*/">
+<!--   問題部分   -->けが、負傷
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-19">ANSER</label>
+  <input type="checkbox" id="nomber-19">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->injury
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->生命、いのち
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-20">ANSER</label>
+  <input type="checkbox" id="nomber-20">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->life
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->・・・に～と名前を付ける
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-21">ANSER</label>
+  <input type="checkbox" id="nomber-21">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->name
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:180px;left:-600px;/*問題*/">
+<!--   問題部分   -->～を救助する
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-22">ANSER</label>
+  <input type="checkbox" id="nomber-22">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->rescue
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->～を救う
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-23">ANSER</label>
+  <input type="checkbox" id="nomber-23">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->save
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->～に合う
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-24">ANSER</label>
+  <input type="checkbox" id="nomber-24">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->see
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:180px;left:-600px;/*問題*/">
+<!--   問題部分   -->(病気などが)思い、重大な
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-25">ANSER</label>
+  <input type="checkbox" id="nomber-25">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->serious
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->内気な、恥ずかしがり屋の
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-26">ANSER</label>
+  <input type="checkbox" id="nomber-26">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->shy
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->～歳の
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-27">ANSER</label>
+  <input type="checkbox" id="nomber-27">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->～-year-old
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:180px;left:-600px;/*問題*/">
+<!--   問題部分   -->人口の
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-28">ANSER</label>
+  <input type="checkbox" id="nomber-28">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->artificial
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->きずな
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-29">ANSER</label>
+  <input type="checkbox" id="nomber-29">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->bond
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->慈善
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-30">ANSER</label>
+  <input type="checkbox" id="nomber-30">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->charity
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:180px;left:-600px;/*問題*/">
+<!--   問題部分   -->～を集める
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-31">ANSER</label>
+  <input type="checkbox" id="nomber-31">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->collect
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->～を切る
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-32">ANSER</label>
+  <input type="checkbox" id="nomber-32">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->cut
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->～を切り離す
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-32">ANSER</label>
+  <input type="checkbox" id="nomber-33">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->cut off
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:180px;left:-600px;/*問題*/">
+<!--   問題部分   -->高価な、費用の掛かる
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-34">ANSER</label>
+  <input type="checkbox" id="nomber-34">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->expersive
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->ついに、とうとう
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-35">ANSER</label>
+  <input type="checkbox" id="nomber-35">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->finally
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->お金
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-36">ANSER</label>
+  <input type="checkbox" id="nomber-36">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->money
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:180px;left:-600px;/*問題*/">
+<!--   問題部分   -->～を計画する
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-37">ANSER</label>
+  <input type="checkbox" id="nomber-37">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->plan
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->本当の、真実の
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-38">ANSER</label>
+  <input type="checkbox" id="nomber-38">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->true
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->ボランティア
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-39">ANSER</label>
+  <input type="checkbox" id="nomber-39">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->volunteer
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:180px;left:-600px;/*問題*/">
+<!--   問題部分   -->～なしで
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-40">ANSER</label>
+  <input type="checkbox" id="nomber-40">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->without
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->もはや～ではない
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-41">ANSER</label>
+  <input type="checkbox" id="nomber-41">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->no longer
+</p>    </div>
+
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->～を思いつく
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-42">ANSER</label>
+  <input type="checkbox" id="nomber-42">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->think of ～
+</p>    </div>
+
+  <div class="normal-square"style = 
+  "position:relative;top:180px;left:-600px;/*問題*/">
+<!--   問題部分   -->かっこいい
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-43">ANSER</label>
+  <input type="checkbox" id="nomber-43">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->cool
+</p>    </div>
+
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->ドル
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-44">ANSER</label>
+  <input type="checkbox" id="nomber-44">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->dollar
+</p>    </div>
+
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->上着
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-45">ANSER</label>
+  <input type="checkbox" id="nomber-45">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->jacket
+</p>    </div>
+
+  <div class="normal-square"style = 
+  "position:relative;top:180px;left:-600px;/*問題*/">
+<!--   問題部分   -->もっと多くの事[もの]
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-46">ANSER</label>
+  <input type="checkbox" id="nomber-46">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->more
+</p>    </div>
+
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->何かあるもの[こと]
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-47">ANSER</label>
+  <input type="checkbox" id="nomber-47">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->something
+</p>    </div>
+
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->～を選ぶ、買う
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-48">ANSER</label>
+  <input type="checkbox" id="nomber-48">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->take
+</p>    </div>
+
+  <div class="normal-square"style = 
+  "position:relative;top:180px;left:-600px;/*問題*/">
+<!--   問題部分   -->～はいくらですか
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-49">ANSER</label>
+  <input type="checkbox" id="nomber-49">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->How much～?
+</p>    </div>
+
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->～しましょうか。
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-50">ANSER</label>
+  <input type="checkbox" id="nomber-50">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->Shall I～?
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->もっともよいもの、最良
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-51">ANSER</label>
+  <input type="checkbox" id="nomber-51">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->best
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:180px;left:-600px;/*問題*/">
+<!--   問題部分   -->漫画
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-52">ANSER</label>
+  <input type="checkbox" id="nomber-52">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->comic
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->(その)他に[の]
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-53">ANSER</label>
+  <input type="checkbox" id="nomber-53">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->else
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->サッカークラブ
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-54">ANSER</label>
+  <input type="checkbox" id="nomber-54">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->FC(football club)
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:180px;left:-600px;/*問題*/">
+<!--   問題部分   -->小説
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-55">ANSER</label>
+  <input type="checkbox" id="nomber-55">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->fiction
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->主人公
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-56">ANSER</label>
+  <input type="checkbox" id="nomber-56">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->hero
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->探す
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-57">ANSER</label>
+  <input type="checkbox" id="nomber-57">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->search
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:180px;left:-600px;/*問題*/">
+<!--   問題部分   -->～を探す
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-58">ANSER</label>
+  <input type="checkbox" id="nomber-58">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->search for
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->星、恒星
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-59">ANSER</label>
+  <input type="checkbox" id="nomber-59">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->star
+</p>    </div>
+  <div class="normal-square"style = 
+  "position:relative;top:-187px;left:300px;/*問題*/">
+<!--   問題部分   -->宝物
+  <div class="normal-label-square" style = "position:absolute;top:55%;left:0%">
+  <div class="disp-box-normal"   style = "position:absolute;top:5%;left:10px; " >
+  <label for="nomber-60">ANSER</label>
+  <input type="checkbox" id="nomber-60">
+  <p class="text"style ="/*回答*/"  style="position:absolute;top:20%;left:0%;">
+<!--   回答部分   -->treasure
+</p>    </div>
+</body>
+</html>
